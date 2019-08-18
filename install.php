@@ -11,7 +11,9 @@ $db_connection->query(
         `turn` tinyint(4) UNSIGNED NOT NULL DEFAULT 0,
         `future_cards` tinytext DEFAULT NULL,
         `last_update_ts` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-        `locked` tinyint(1) NOT NULL DEFAULT 0
+        `locked` tinyint(1) NOT NULL DEFAULT 0,
+        `turn_length` INT NOT NULL DEFAULT '600', 
+        `token` CHAR(10) NULL DEFAULT NULL
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 
 $db_connection->query(

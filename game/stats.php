@@ -3,7 +3,6 @@ require_once("functions.php");
 
 $gid = NULL;
 if (isset($_GET['game'])) $gid = $_GET['game'];
-var_dump(get_game_info($gid));
 if (!is_null($gid) && is_null(get_game_info($gid))) $gid = NULL;
 
 if (is_null($gid)) {

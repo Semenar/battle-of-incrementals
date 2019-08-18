@@ -237,8 +237,8 @@ calculate_changes($player_data, $producers, $currencies);
                     </div>
                 </div>
                 <div class="screen-grid-info-clock">
-                    <?php $time_left = $game_data['last_update_ts'] + $CONST['TURN_LENGTH'] - time() ?>
-                    <p id="clock" class="screen-stat-clock <?php if ($time_left < $CONST['TURN_ALERT']) echo "alert"?>"><?=convert_to_time($time_left)?>
+                    <?php $time_left = $game_data['last_update_ts'] + $game_data['turn_length'] - time() ?>
+                    <p id="clock" class="screen-stat-clock <?php if ($time_left < $CONST['TURN_ALERT'] * $game_data['turn_length']) echo "alert"?>"><?=convert_to_time($time_left)?>
                     </p>
                 </div>
 
@@ -422,6 +422,6 @@ calculate_changes($player_data, $producers, $currencies);
             </div>
         </div>
 
-        <script> ticking_clock(<?=$time_left?>, <?=$CONST['TURN_ALERT']?>); </script>
+        <script> ticking_clock(<?=$time_left?>, <?=$CONST['TURN_ALERT'] * $game_data['turn_length']?>); </script>
     </body>
 </html>

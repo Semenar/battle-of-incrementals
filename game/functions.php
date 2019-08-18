@@ -3,8 +3,7 @@ require_once('../globals.php');
 
 $CONST = array();
 $CONST['GAME_TURN_LIMIT'] = 10;
-$CONST['TURN_LENGTH'] = 3 * 86400;
-$CONST['TURN_ALERT'] = 3600;
+$CONST['TURN_ALERT'] = 0.1;
 $CONST['CARD_CHOICES'] = 3;
 $CONST['EPS'] = 1e-6;
 
@@ -609,7 +608,7 @@ function end_of_turn($game_id) {
         if (!$player['commit']) $all_committed = FALSE;
     }
 
-    if (!$game_data['locked'] && (time() >= $game_data['last_update_ts'] + $CONST['TURN_LENGTH'] || $all_committed)) {
+    if (!$game_data['locked'] && (time() >= $game_data['last_update_ts'] + $game_data['turn_length'] || $all_committed)) {
         // If so, lock other instances by updating game info and force-committing all players
         perform_query('UPDATE games SET turn = '.($game_data['turn'] + 1).", locked = 1 WHERE id = ".$game_data['id']);
         perform_query('UPDATE players SET commit = 1 WHERE game_id = '.$game_data['id']);
@@ -723,6 +722,9 @@ function end_of_turn($game_id) {
             $game_data['future_cards'] = implode(',', $game_data['future_cards']);
             perform_query('UPDATE games SET future_cards = "'.$game_data['future_cards'].'", locked = 0 WHERE id = '.$game_data['id']);
         }
+
+        // Force-refresh page (bugfix for Round 11)
+        header("Refresh: 0");
     }
 }
 
