@@ -77,7 +77,7 @@ calculate_changes($player_data, $producers, $currencies);
                         if (can_buy_building($player_data_after_conversion['resources'], $producer)) $can_do_something = true;
                     }
                 }
-                if (!$can_do_something && !$player_data['commit']) {
+                if (!$can_do_something && !$player_data['commit'] && (is_null($player_data['cards']) || !is_null($player_data['card_picked']))) {
                     ?>
                     <p class="screen-stat-no-actions">Nothing to do. Consider to <span class="highlight">Commit</span> or <span class="highlight">Start Over</span>.</p>
                     <?php
