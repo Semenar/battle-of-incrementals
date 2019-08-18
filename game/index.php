@@ -64,6 +64,25 @@ calculate_changes($player_data, $producers, $currencies);
             <div class="screen-grid-buildings">
 
             <?php
+                // If there is nothing to do, print message
+                $can_do_something = false;
+                foreach ($currencies as $currency) {
+                    $player_data_after_conversion = $player_data;
+                    foreach ($currencies as $other_currency) {
+                        if ($currency['id'] != $other_currency['id']) {
+                            $player_data_after_conversion['resources']['money'] += $player_data_after_conversion['resources']['currency_'.$other_currency['id']];
+                        }
+                    }
+                    foreach ($producers[$currency['id']] as $producer) {
+                        if (can_buy_building($player_data_after_conversion['resources'], $producer)) $can_do_something = true;
+                    }
+                }
+                if (!$can_do_something && !$player_data['commit']) {
+                    ?>
+                    <p class="screen-stat-no-actions">Nothing to do. Consider to <span class="highlight">Commit</span> or <span class="highlight">Start Over</span>.</p>
+                    <?php
+                }
+
                 foreach ($currencies as $currency) {
                     ?>
                     <div class="screen-grid-building">

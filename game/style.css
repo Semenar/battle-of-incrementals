@@ -121,6 +121,21 @@ a {
     align-items: center;
 }
 
+.screen-stat-no-actions {
+    margin: 0px;
+    width: 100%;
+
+    font-family: 'Jet Set';
+    font-size: 25px;
+    color: white;
+
+    text-align: center;
+}
+
+.screen-stat-no-actions .highlight {
+    color: var(--color-400);
+}
+
 .screen-grid-building {
     padding: 5px;
     padding-right: 10px;

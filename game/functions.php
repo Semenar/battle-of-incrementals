@@ -136,7 +136,9 @@ function get_game_info($gid) {
     $query->free();
 
     // Fixes
-    $data['last_update_ts'] = date_create($data['last_update_ts'])->getTimestamp();
+    if (!is_null($data)) {
+        $data['last_update_ts'] = date_create($data['last_update_ts'])->getTimestamp();
+    }
 
     return $data;
 }
@@ -172,7 +174,9 @@ function get_card_info($card_id) {
     $query->free();
 
     // Fixes
-    $data['data'] = json_decode($data['data'], true);
+    if (!is_null($data)) {
+        $data['data'] = json_decode($data['data'], true);
+    }
 
     return $data;
 }
@@ -545,7 +549,7 @@ function implement_card_effect($game_id, $turn, $card, &$currencies, &$producers
         foreach ($player_data as &$player) {
             $player['resources']['currency_'.$card['data']['industry']] = 3;
             $player['resources']['vp_'.$card['data']['industry']] = 0;
-            $player['resources']['rvp_'.$card['data']['industry']] = 0;
+            //$player['resources']['rvp_'.$card['data']['industry']] = 0;
             foreach ($producers[$card['data']['industry']] as $producer) {
                 $player['resources']['producer_'.$producer['currency_id'].'_'.$producer['level']] = 0;
                 $player['resources']['bought_'.$producer['currency_id'].'_'.$producer['level']] = 0;
