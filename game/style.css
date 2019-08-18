@@ -1,0 +1,893 @@
+:root {
+    --color-400: #0C5F86;
+    --color-450: #0a3971;
+    --color-500: #08145C;
+    --color-600: #060f45;
+    --color-700: #040a2e;
+    --color-800: #020517;
+    --color-900: #000000;
+
+    --color-trela: #22b222;
+    --color-alert: #b22222;
+    --color-alela: #b2b222;
+
+    --color-gold: #d4af37;
+    --color-silver: #848482;
+    --color-bronze: #cd7f32;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    height: 100%;
+
+    min-width: 1500px;
+
+    background-color: var(--color-900);
+}
+
+a {
+    text-decoration: none;
+}
+
+
+
+.screen-grid {
+    width: 100%;
+    
+    display: grid;
+    grid-template-rows: 80px 320px 1fr 300px 220px;
+    grid-template-columns: 3fr 1fr 250px;
+
+    grid-template-areas: 
+        "money info info"
+        "buildings info info"
+        "buildings cards cards"
+        "buildings logs logs"
+        "curcards curcards controls";
+}
+
+.screen-grid-money-wrapper {
+    grid-area: money;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.screen-grid-money, .screen-grid-vp-total {
+    margin: 10px;
+    background-color: var(--color-400);
+    box-shadow: 5px 5px 0 var(--color-500);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen-grid-money {
+    flex-grow: 1;
+}
+
+.screen-grid-vp-total {
+    padding-right: 10px;
+}
+
+.icon-20px {
+    width: 20px;
+    height: 20px;
+}
+
+.icon-30px {
+    width: 30px;
+    height: 30px;
+
+    margin: 5px;
+}
+
+.icon-50px {
+    width: 50px;
+    height: 50px;
+
+    margin: 5px;
+}
+
+.screen-stat-money {
+    margin: 0px;
+
+    font-family: 'Jet Set';
+    font-size: 32px;
+    color: white;
+
+    vertical-align: middle;
+
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+.screen-grid-buildings {
+    grid-area: buildings;
+    margin: 10px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.screen-grid-building {
+    padding: 5px;
+    padding-right: 10px;
+    margin: 10px;
+    width: calc(45% - 25px);
+
+    background-color: var(--color-600);
+    box-shadow: 5px 5px 0 var(--color-700);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.screen-grid-resource {
+    margin-bottom: 10px;
+    background-color: var(--color-400);
+    box-shadow: 5px 5px 0 var(--color-500);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.screen-stat-resource {
+    margin: 0px;
+
+    flex-grow: 1;
+
+    font-family: 'Jet Set';
+    font-size: 20px;
+    color: white;
+
+    vertical-align: middle;
+
+    padding-left: 5px;
+    padding-bottom: 3px;
+}
+
+.screen-sell-all {
+    margin: 0px;
+
+    font-family: 'Jet Set';
+    font-size: 12px;
+    color: white;
+
+    text-align: center;
+
+    margin: 5px;
+    padding: 5px;
+
+    background-color: var(--color-600);
+}
+
+.screen-sell-all:not(.disabled):hover {
+    cursor: pointer;
+    background-color: var(--color-450);
+}
+
+.screen-sell-all.disabled {
+    background-color: var(--color-900);
+}
+
+.screen-grid-producer {
+    display: grid;
+    grid-template-rows: 20px 20px;
+    grid-template-columns: 40px auto 40px 20px 70px;
+    grid-template-areas:
+        "pic name produce produce-icon buy"
+        "pic cost num num buy";
+
+    background-color: var(--color-400);
+    border-bottom: 1px var(--color-600) solid;
+}
+
+.screen-grid-vp {
+    display: grid;
+    grid-template-rows: 20px 20px;
+    grid-template-columns: 40px auto 40px;
+    grid-template-areas:
+        "pic name total"
+        "pic cost total";
+
+    background-color: var(--color-400);
+
+    margin-top: 5px;
+}
+
+.screen-stat-producer-name {
+    margin: 0px;
+    grid-area: name;
+
+    font-family: 'Jet Set';
+    font-size: 14px;
+    color: white;
+}
+
+.screen-stat-producer-num {
+    margin: 0px;
+    grid-area: num;
+
+    font-family: 'Jet Set';
+    font-size: 15px;
+    color: white;
+
+    text-align: right;
+}
+
+.screen-stat-producer-produce {
+    margin: 0px;
+    margin-right: 3px;
+    grid-area: produce;
+
+    font-family: 'Jet Set';
+    font-size: 15px;
+    color: white;
+
+    text-align: right;
+}
+
+.screen-grid-producer-cost {
+    grid-area: cost;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.screen-stat-producer-cost {
+    margin: 0px;
+    margin-left: 3px;
+    margin-right: 3px;
+
+    font-family: 'Jet Set';
+    font-size: 14px;
+    color: white;
+
+    align-self: flex-start;
+}
+
+.screen-grid-producer-buy {
+    grid-area: buy;
+
+    font-family: 'Jet Set';
+    font-size: 16px;
+    color: white;
+
+    text-align: center;
+    align-self: center;
+
+    margin: 5px;
+    padding: 5px;
+
+    background-color: var(--color-600);
+}
+
+.screen-grid-producer-buy:not(.disabled):hover {
+    cursor: pointer;
+    background-color: var(--color-450);
+}
+
+.screen-grid-producer-buy.disabled {
+    cursor: default;
+    background-color: var(--color-900);
+}
+
+.screen-stat-vp {
+    grid-area: total;
+
+    font-family: 'Jet Set';
+    font-size: 24px;
+    color: white;
+
+    text-align: center;
+    align-self: center;
+}
+
+
+
+
+.screen-grid-info-wrapper {
+    grid-area: info;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+    display: grid;
+    grid-template-rows: 80px auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "round clock"
+        "players players";
+}
+
+.screen-grid-info-round {
+    padding: 5px;
+
+    grid-area: round;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background-color: var(--color-400);
+}
+
+.screen-grid-info-clock {
+    grid-area: clock;
+    height: 100%;
+
+    display: table;
+
+    background-color: var(--color-600);
+}
+
+.screen-grid-info-players {
+    grid-area: players;
+
+    background-color: var(--color-500);
+}
+
+.screen-stat-clock {
+    margin: 0px;
+    height: 100%;
+
+    font-family: 'Jet Set';
+    font-size: 50px;
+    color: white;
+
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+
+    text-shadow: -5px -5px 0px var(--color-900);
+}
+
+.screen-stat-clock.alert {
+    color: var(--color-alert);
+}
+
+.screen-stat-round-num {
+    margin: 0px;
+
+    font-family: 'Jet Set';
+    font-size: 20px;
+    color: white;
+}
+
+.screen-stat-round-icons {
+    height: 100%;
+
+    padding-left: 10px;
+
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-template-rows: repeat(2, auto);
+
+    flex-grow: 1;
+}
+
+.screen-stat-round-icon {
+    height: 18px;
+    width: 18px;
+
+    border: 3px var(--color-900) solid;
+    border-radius: 18px;
+    background-color: var(--color-500);
+
+    justify-self: center;
+    align-self: center;
+}
+
+.screen-stat-round-icon.current {
+    background-color: white;
+}
+
+.screen-stat-round-icon.past {
+    background-color: var(--color-900);
+}
+
+.screen-grid-info-players {
+    grid-area: players;
+    padding: 5px;
+
+    display: grid;
+    grid-template-rows: 60px repeat(5, 1fr);
+    grid-template-columns: auto 60px repeat(6, 1fr);
+
+    justify-items: center;
+    align-items: center;
+}
+
+.screen-stat-player-name {
+    width: 100%;
+
+    margin: 0px;
+
+    font-family: 'Jet Set';
+    font-size: 20px;
+    color: white;
+}
+
+.screen-stat-player-name.not-committed {
+	color: var(--color-alert);
+}
+
+.screen-stat-player-vp {
+    margin: 0px;
+
+    font-family: 'Jet Set';
+    font-size: 28px;
+    color: white;
+}
+
+.screen-stat-player-currency {
+    margin: 0px;
+
+    font-family: 'Jet Set';
+    font-size: 18px;
+    color: white;
+
+    text-align: center;
+}
+
+.screen-stat-player-currency-growth {
+    font-size: 14px;
+}
+
+.screen-stat-player-me {
+    width: calc(100% + 10px);
+    height: 100%;
+
+    background-color: var(--color-trela);
+}
+
+
+
+.screen-grid-controls {
+    grid-area: controls;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.screen-stat-button {
+    width: 80%;
+    margin: 0px;
+    padding: 5px;
+
+    background-color: var(--color-400);
+    box-shadow: 5px 5px 0 var(--color-700);
+
+    font-family: 'Jet Set';
+    font-size: 24px;
+    color: white;
+    text-align: center;
+}
+
+.screen-stat-button:not(.disabled):hover {
+    cursor: pointer;
+    background-color: var(--color-500);
+}
+
+.screen-stat-button.disabled {
+    cursor: default;
+    background-color: var(--color-600);
+}
+
+
+
+.screen-grid-logs {
+    grid-area: logs;
+
+    padding-top: 40px;
+    margin-bottom: 5px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+
+    overflow-y: auto;
+
+    background-color: var(--color-500);
+}
+
+.screen-info-logs {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 50%;
+    height: 40px;
+
+    margin: 0px;
+
+    padding-left: 5px;
+
+    font-family: 'Jet Set';
+    font-size: 24px;
+    color: white;
+
+    background-color: var(--color-400);
+}
+
+.screen-stat-log {
+    margin: 0px;
+    margin-top: 5px;
+    padding-left: 3px;
+
+    font-family: 'Jet Set';
+    font-size: 14px;
+    color: white;
+}
+
+.variable {
+    color: var(--color-alela);
+}
+
+
+
+
+.screen-grid-curcards {
+    grid-area: curcards;
+
+    display: grid;
+    grid-template-rows: 20px 20px 20px 1fr;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+}
+
+.screen-grid-curcards-green, .screen-grid-curcards-red {
+    margin: 0px;
+
+    font-family: 'Jet Set';
+    font-size: 15px;
+    color: white;
+
+    text-align: center;
+}
+
+.screen-grid-curcards-green {
+    background-color: var(--color-trela);
+}
+
+.screen-grid-curcards-red {
+    background-color: var(--color-alert);
+}
+
+.screen-stat-curcard-name {
+    grid-row: 3;
+
+    margin: 0px;
+
+    font-family: 'Jet Set';
+    font-size: 14px;
+    color: white;
+
+    text-align: center;
+
+    background-color: var(--color-600);
+}
+
+.screen-stat-curcard-desc {
+    padding: 5px;
+
+    grid-row: 4;
+
+    margin: 0px;
+
+    font-family: 'Jet Set';
+    font-size: 12px;
+    color: white;
+
+    background-color: var(--color-400);
+}
+
+.screen-stat-curcard-desc .icon-text {
+    margin: 0px;
+
+    width: 16px;
+    height: 16px;
+
+    position: relative;
+    top: 3px;
+}
+
+
+
+
+.screen-grid-cards {
+    grid-area: cards;
+
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+.screen-grid-cards-locked {
+    position: relative;
+
+    flex-grow: 1;
+
+    background-color: var(--color-700);
+}
+
+.screen-stat-lock {
+    margin: 0px;
+    width: 100%;
+
+    font-family: 'Jet Set';
+    font-size: 24px;
+    color: white;
+
+    text-align: center;
+}
+
+.screen-grid-card {
+    margin-right: 5px;
+
+    display: grid;
+    grid-template-rows: 25px 65px;
+    grid-template-columns: 70% 30%;
+    grid-template-areas:
+        "name play"
+        "desc play";
+
+    background-color: var(--color-400);
+    box-shadow: 5px 5px 0 var(--color-600);
+}
+
+.screen-stat-card-name {
+    grid-area: name;
+    margin: 0px;
+    padding-left: 10px;
+
+    font-family: 'Jet Set';
+    font-size: 18px;
+    color: white;
+
+    background-color: var(--color-500);
+    border-bottom: 1px var(--color-700) solid;
+}
+
+.screen-stat-card-desc {
+    grid-area: desc;
+    margin: 0px;
+    padding-left: 10px;
+
+    font-family: 'Jet Set';
+    font-size: 14px;
+    color: white;
+}
+
+.screen-stat-card-desc .icon-text {
+    margin: 0px;
+
+    width: 18px;
+    height: 18px;
+
+    position: relative;
+    top: 3px;
+}
+
+.screen-stat-card-play {
+    background-color: var(--color-600);
+}
+
+.screen-stat-card-play:hover {
+    cursor: pointer;
+    background-color: var(--color-450);
+}
+
+.screen-stat-card-play, .screen-stat-card-played {
+    grid-area: play;
+
+    justify-self: center;
+    align-self: center;
+
+    margin: 0px;
+    padding: 5px;
+
+    font-family: 'Jet Set';
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+.stats-results {
+    width: 100%;
+    position: absolute;
+    bottom: 75%;
+
+    font-family: 'Jet Set';
+    font-size: 48px;
+    color: white;
+    text-align: center;
+}
+
+.stats-info-players {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 30%;
+    bottom: 15%;
+
+    display: grid;
+    grid-template-rows: 100px repeat(5, 1fr);
+    grid-template-columns: 50px auto 100px repeat(6, 1fr);
+
+    justify-items: center;
+    align-items: center;
+
+    box-shadow: 10px 10px 0 var(--color-700);
+}
+
+.stats-gold-ribbon {
+    width: 100%;
+    height: 100%;
+
+    grid-row: 2;
+    grid-column: 1 / -1;
+
+    background-color: var(--color-gold);
+}
+
+.stats-silver-ribbon {
+    width: 100%;
+    height: 100%;
+
+    grid-row: 3;
+    grid-column: 1 / -1;
+
+    background-color: var(--color-silver);
+}
+
+.stats-bronze-ribbon {
+    width: 100%;
+    height: 100%;
+
+    grid-row: 4;
+    grid-column: 1 / -1;
+
+    background-color: var(--color-bronze);
+}
+
+.stats-4th-ribbon {
+    width: 100%;
+    height: 100%;
+
+    grid-row: 5;
+    grid-column: 1 / -1;
+
+    background-color: var(--color-500);
+}
+
+.stats-5th-ribbon {
+    width: 100%;
+    height: 100%;
+
+    grid-row: 6;
+    grid-column: 1 / -1;
+
+    background-color: var(--color-600);
+}
+
+.stats-icon-ribbon {
+    width: 100%;
+    height: 100%;
+
+    grid-row: 1;
+    grid-column: 3 / -1;
+
+    background-color: var(--color-400);
+}
+
+.stats-vp-ribbon {
+    width: 100%;
+    height: 100%;
+
+    grid-row: 1 / -1;
+    grid-column: 3;
+
+    background-color: var(--color-trela);
+    opacity: 0.4;
+}
+
+.stats-place {
+    margin: 0px;
+
+    grid-column: 1;
+
+    font-family: 'Jet Set';
+    font-size: 36px;
+    color: white;
+}
+
+.stats-name {
+    margin: 0px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    grid-column: 2;
+
+    font-family: 'Jet Set';
+    font-size: 24px;
+    color: white;
+}
+
+.stats-vp {
+    margin: 0px;
+
+    grid-column: 3;
+
+    font-family: 'Jet Set';
+    font-size: 36px;
+    color: white;
+
+    z-index: 1;
+}
+
+.stats-currency {
+    width: 100%;
+    padding-left: 10%;
+
+    margin: 0px;
+
+    grid-column: 3;
+
+    font-family: 'Jet Set';
+    font-size: 20px;
+    color: white;
+}
+
+.stats-currency-small {
+    font-size: 16px;
+}
+
+.stats-icon-80px {
+    width: 80px;
+    height: 80px;
+
+    z-index: 1;
+}
+
+.stats-icon-50px {
+    width: 50px;
+    height: 50px;
+
+    z-index: 1;
+}
