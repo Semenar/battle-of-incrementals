@@ -36,7 +36,7 @@ calculate_changes($player_data, $producers, $currencies);
     <head>
         <title>Battle of Incrementals</title>
         <link rel="shortcut icon" href="../gfx/icons/favicon.png" type="image/png">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css?ver=<?=time()?>">
         <link rel="stylesheet" href="../fonts.css">
         <script src="index.js"></script>
         <?php
